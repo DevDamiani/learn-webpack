@@ -6,7 +6,7 @@ export default class HelloWorldButton {
 
     Render(){
         const button = document.createElement('button');
-        button.innerHTML = 'Hello World';
+        button.innerHTML = 'Hello World!!';
 
         button.classList.add(this.buttonCssClass);
 
