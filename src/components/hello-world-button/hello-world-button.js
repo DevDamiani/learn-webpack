@@ -14,7 +14,7 @@ export default class HelloWorldButton {
 
         button.onclick = () => {
             const p = document.createElement('p');
-            p.innerText = 'hello world';
+            p.innerText = 'hello world 123';
             p.classList.add('hello-world-text')
             document.body.appendChild(p);
         }
