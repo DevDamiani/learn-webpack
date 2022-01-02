@@ -5,14 +5,31 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWEbPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        'hello-world': './src/hello-world.js',
+        kiwi: './src/kiwi.js'
+
+    },
     output: {
-        filename: 'bundle.[contenthash].js',
+        filename: '[name].bundle.[contenthash].js',
         path: path.resolve(__dirname, './dist')
     },
     mode: 'production',
+    optimization: {
+        splitChunks: {
+            chunks: "all",
+            minSize: 5000,
+            automaticNameDelimiter: '_'
+        }
+    },
     module: {
         rules: [
+            {
+                test: /\.jpg$/,
+                use: [
+                    'file-loader'
+                ]
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -47,14 +64,24 @@ module.exports = {
     plugins: [
         new TerserPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'style.css',
+            filename: '[name].[contenthash].css',
 
         }),
         new CleanWebpackPlugin(),
         new HtmlWEbPackPlugin({
+            filename: 'hello-world.html',
+            chunks: ['hello-world'],
             title: 'Hello World',
-            template: 'src/index.hbs',
-            description: 'Some description'
+            template: 'src/page-template.hbs',
+            description: 'hello-world'
+            
+        }),
+        new HtmlWEbPackPlugin({
+            filename: 'kiwi.html',
+            chunks: ['kiwi'],
+            title: 'kiwi',
+            template: 'src/page-template.hbs',
+            description: 'kiwi'
             
         }),
     ]

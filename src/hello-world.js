@@ -1,14 +1,11 @@
-
 import HelloWorldButton from './components/hello-world-button/hello-world-button.js';
-import Heading from './components/heading/heading.js'
+import Heading from './components/heading/heading.js';
+import React from 'react';
 
 const helloWorld = new HelloWorldButton();
 const heading = new Heading();
-heading.render();
+heading.render(_.upperFirst('hello World'));
 helloWorld.Render();
-
-
-helloWorld.awreawea();
 
 if (process.env.NODE_ENV === 'production') {
     console.log('mode: production');
