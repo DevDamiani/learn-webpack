@@ -18,5 +18,7 @@ export default class HelloWorldButton {
             p.classList.add('hello-world-text')
             document.body.appendChild(p);
         }
+
+        console.log('10');
     }
 }
